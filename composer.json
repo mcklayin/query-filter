@@ -1,0 +1,32 @@
+{
+    "name": "mcklayin/query-filter",
+    "description": "Easy create filters for your Eloquent model. Based on kblais/query-filter",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmytro",
+            "email": "mcklayin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/database": "~5.0",
+        "illuminate/http": "~5.0",
+        "illuminate/support": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "McklayiN\\QueryFilter\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "McklayiN\\QueryFilter\\Tests\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "orchestra/testbench": "^3.2",
+        "phpunit/phpunit": "^4.0"
+    }
+}
