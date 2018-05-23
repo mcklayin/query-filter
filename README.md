@@ -24,6 +24,9 @@ To do this, add the following in your `composer.json` :
 }
 ```
 
+Or type in console:
+composer require "mcklayin/query-filter @dev"
+
 ## Usage
 
 - Create your model filters, for exemple in a `App\Http\Filters` namespace :
