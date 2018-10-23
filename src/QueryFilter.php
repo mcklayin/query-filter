@@ -40,11 +40,11 @@ abstract class QueryFilter implements QueryFilterInterface
     protected $prepareFilterNamePrefix = 'prepareFilter';
 
     /**
-     * Prepare filter value method name
+     * Prefix for filter value preparing method
      *
      * @var string
      */
-    protected $prepareFilterValueName = 'prepareValue';
+    protected $prepareFilterValuePrefix = 'prepareValue';
 
     /**
      * Create a new QueryFilter instance.
@@ -72,7 +72,7 @@ abstract class QueryFilter implements QueryFilterInterface
 
         foreach ($this->filters() as $name => $value) {
             $methodName = $this->prepareFilterName($name);
-            $value = $this->prepareFilterValue($value);
+            $value = $this->prepareFilterValue($value, $name);
 
             if ($this->shouldCall($methodName, $value)) {
                 call_user_func_array([$this, $methodName], $value);
@@ -113,15 +113,18 @@ abstract class QueryFilter implements QueryFilterInterface
      *
      *
      * @example
-     * function prepareValue($value) {...}
+     * function prepareValueActive($value) {...}
      *
      * @param $value
+     * @param string $methodName
      * @return array
      */
-    public function prepareFilterValue($value): array
+    public function prepareFilterValue($value, string $methodName): array
     {
-        if (method_exists($this, $this->prepareFilterValueName)) {
-            return call_user_func([$this, $this->prepareFilterValueName], $value);
+        $prepareFilteValue = $this->prepareFilterValuePrefix . ucfirst($methodName);
+        
+        if (method_exists($this, $prepareFilteValue)) {
+            return call_user_func([$this, $prepareFilteValue], $value);
         }
 
         return array_filter([$value]);
