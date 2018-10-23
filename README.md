@@ -36,7 +36,7 @@ composer require "mcklayin/query-filter @dev"
 
 namespace App\Http\Filters;
 
-use Kblais\QueryFilter\QueryFilter;
+use McklayiN\QueryFilter\QueryFilter;
 
 class MyModelFilter extends QueryFilter
 {
